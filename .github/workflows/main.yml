@@ -37,8 +37,7 @@ jobs:
       # Step 4: List generated artifact
       - name: List built artifacts
         run: |
-          echo "Compiled Classes:"
-          find target/classes -type f -name "*.class"
+
           echo "Built Artifacts:"
           ls -lh target/*.jar || echo "No JAR built"
 
