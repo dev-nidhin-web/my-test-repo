@@ -25,21 +25,31 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
+          
+      # Step 3: Clean and Compile code
+      - name: Clean and Compile
+        run: mvn -B clean compile
 
       # Step 3: Build project using Maven
       - name: Build with Maven
-        run: mvn -B clean package
+        run: mvn -B package
 
       # Step 4: List generated artifact
       - name: List built artifacts
-        run: ls -R target
+        run: |
+          echo "Compiled Classes:"
+          find target/classes -type f -name "*.class"
+          echo "Built Artifacts:"
+          ls -lh target/*.jar || echo "No JAR built"
 
       # Step 5 (optional): Upload artifact for later jobs or downloads
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
         with:
           name: built--jar
-          path: target/*.jar
+          path: |
+            target/*.jar
+            target/classes/**/*.class
 
   # 2️⃣ Job: Run JUnit Tests
   test:
