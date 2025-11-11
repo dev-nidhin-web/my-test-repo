@@ -53,6 +53,7 @@ jobs:
   test:
     name: Run Unit Tests
     runs-on: ubuntu-latest
+    if: success() && github.ref == 'refs/heads/dev'
     needs: build  # Run this after build is successful
 
     steps:
