@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  # 1️⃣ Job: Build the Maven project
+  # 1️⃣ Job: Build the Mavenn project
   build:
     name: Build with Maven
     runs-on: ubuntu-latest
